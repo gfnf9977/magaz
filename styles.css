@@ -113,3 +113,19 @@ p, li, td, th {
     font-style: italic;
     color: #666666;
 }
+
+dl.shop-locations dd {
+    color: blue;
+    font-weight: bold;
+}
+
+p + ul li:first-child,
+p + ul li:nth-child(2) {
+    font-weight: bold;
+}
+
+li > font {
+    color: #FF5733 !important;
+    font-weight: bold;
+}
+
