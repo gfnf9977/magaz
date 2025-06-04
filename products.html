@@ -66,5 +66,59 @@
 <p><font face="Arial" size="+1">Дізнайтеся більше про <a href="#delivery" style="color: #4CAF50;">доставку та самовивіз</a>.</font></p>
 <p><font face="Arial" size="+1">Перегляньте <a href="contact.html#address" style="color: #4CAF50;">нашу адресу</a>.</font></p>
 <p id="delivery"><font face="Arial" size="+1"><b>Ви можете забрати свій товар самовивозом з нашого магазину.</b> Доставка здійснюється виключно через Нову Пошту. Ознайомитися з тарифами можна на <a href="https://www.novaposhta.ua/" target="_blank" style="color: #4CAF50;">офіційному сайті Нової Пошти</a>.</font></p>
+
+<!-- Додаємо кнопки для виконання різних дій -->
+<button onclick="useGetElementById()">Використати getElementById</button>
+<button onclick="useQuerySelectorAll()">Використати querySelectorAll</button>
+<button onclick="modifyDOMProperties()">Змінити властивості DOM</button>
+<button onclick="useDocumentWrite()">Використати document.write</button>
+<button onclick="useCreateElement()">Використати createElement</button>
+<button onclick="useInsertMethods()">Використати методи вставки</button>
+<button onclick="useRemoveMethod()">Видалити компоненти</button>
+
+<script>
+    function useGetElementById() {
+        var element = document.getElementById("delivery");
+        element.innerHTML = "<font face='Arial' size='+1' color='#FF0000'><b>Доставка оновлена: Ви можете забрати свій товар самовивозом з нашого магазину.</b> Доставка здійснюється виключно через Нову Пошту.</font>";
+    }
+
+    function useQuerySelectorAll() {
+        var elements = document.querySelectorAll(".product-category h2");
+        elements.forEach(function(element, index) {
+            element.textContent = "Категорія " + (index + 1) + ": " + element.textContent;
+        });
+    }
+
+    function modifyDOMProperties() {
+        var firstProduct = document.querySelector(".product-category ol li:first-child");
+        firstProduct.textContent = "Оновлений продукт: " + firstProduct.textContent;
+        firstProduct.style.color = "#FF0000";
+    }
+
+    function useDocumentWrite() {
+        document.write("<p><font face='Arial' size='+1' color='#0000FF'>Дякуємо що обрали найкращий магазин)).</font></p>");
+    }
+
+    function useCreateElement() {
+        var newElement = document.createElement("div");
+        var newText = document.createTextNode("Чекаємо ВАС!!!.");
+        newElement.appendChild(newText);
+        document.body.appendChild(newElement);
+    }
+
+    function useInsertMethods() {
+        var newElement = document.createElement("p");
+        newElement.textContent = "Вітаємо на цій сторінці.";
+        var firstProductCategory = document.querySelector(".product-category");
+        firstProductCategory.prepend(newElement);
+    }
+
+    function useRemoveMethod() {
+        var elementToRemove = document.querySelector(".product-category ol li:last-child");
+        if (elementToRemove) {
+            elementToRemove.remove();
+        }
+    }
+</script>
 </body>
 </html>

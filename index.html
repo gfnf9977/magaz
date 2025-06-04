@@ -33,5 +33,31 @@
 <div id="delivery" class="delivery-info">
     <p><span class="bold">Ви можете забрати свій товар самовивозом з нашого магазину.</span> Доставка здійснюється виключно через Нову Пошту. Ознайомитися з тарифами можна на <a href="https://novaposhta.ua/" target="_blank">офіційному сайті Нової Пошти</a>.</p>
 </div>
+
+<button onclick="changeBackgroundColor()">Оптимізувати колір фону</button>
+
+<script>
+    alert("Ласкаво просимо до нашого магазину техніки!");
+
+    var userName = prompt("Будь ласка, введіть ваше ім'я:", "");
+    if (userName) {
+      alert("Привіт, " + userName + "! Ми раді вас бачити.");
+    }
+
+    var isConfirmed = confirm("Ви хочете перейти до списку наших товарів?");
+    if (isConfirmed) {
+      window.location.href = "products.html";
+    }
+
+    function changeBackgroundColor() {
+        var originalColor = document.body.style.backgroundColor;
+        document.body.style.backgroundColor = "#66FF99";
+
+        setTimeout(function() {
+            document.body.style.backgroundColor = originalColor;
+        }, 30000); // 30 секунд
+    }
+</script>
+
 </body>
 </html>
