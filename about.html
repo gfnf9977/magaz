@@ -5,6 +5,12 @@
     <meta name="author" content="Oleya">
     <title>Про нас - Магазин техніки</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
+    <style>
+        #draggableImage {
+            position: absolute;
+            cursor: move;
+        }
+    </style>
 </head>
 <body>
 <h1 style="color: #333366;">Про наш магазин</h1>
@@ -62,6 +68,29 @@
         <td align="right">Економія для кожного клієнта</td>
     </tr>
 </table>
+
+<img src="111.png" id="draggableImage" style="position: absolute; cursor: move;">
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const draggableImage = document.getElementById('draggableImage');
+        let offsetX, offsetY, isDragging = false;
+        draggableImage.addEventListener('mousedown', function(e) {
+            isDragging = true;
+            offsetX = e.clientX - draggableImage.getBoundingClientRect().left;
+            offsetY = e.clientY - draggableImage.getBoundingClientRect().top;
+            e.preventDefault();
+        });
+        document.addEventListener('mousemove', function(e) {
+            if (!isDragging) return;
+            draggableImage.style.left = (e.clientX - offsetX) + 'px';
+            draggableImage.style.top = (e.clientY - offsetY) + 'px';
+        });
+        document.addEventListener('mouseup', function() {
+            isDragging = false;
+        });
+    });
+</script>
 
 </body>
 </html>

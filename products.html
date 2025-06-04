@@ -39,10 +39,6 @@
 <p><font face="Arial" size="+1" color="#666666">Ми пропонуємо широкий вибір техніки, включаючи <i>ноутбуки, смартфони</i> та побутову техніку.</font></p>
 <p><font face="Arial" size="+1" color="#666666">У нас ви завжди знайдете <b>найновіші моделі</b> за найкращими цінами.</font></p>
 
-<div class="button-container">
-    <button onclick="changeToGreen()">Зелений колір (атрибут)</button>
-    <button id="red-btn">Червоний колір (властивість)</button>
-</div>
 
 <div class="product-category">
     <h2>Електроніка та комп'ютерна техніка</h2>
@@ -102,15 +98,6 @@
         img.style.transform = 'scale(1)';
     }
 
-    function changeToGreen() {
-        document.getElementById('main-title').getElementsByTagName('font')[0].setAttribute('color', '#4CAF50');
-    }
-
-    function changeToRed() {
-        document.getElementById('main-title').getElementsByTagName('font')[0].color = '#FF0000';
-    }
-
-    document.getElementById('red-btn').onclick = changeToRed;
 </script>
 
 </body>

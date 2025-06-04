@@ -5,12 +5,6 @@
     <meta name="author" content="Oleya">
     <title>Головна - Магазин техніки</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
-    <style>
-        .highlight-item {
-            background-color: yellow;
-            font-weight: bold;
-        }
-    </style>
 </head>
 <body>
 <div class="welcome-message">
@@ -40,28 +34,23 @@
     <p><span class="bold">Ви можете забрати свій товар самовивозом з нашого магазину.</span> Доставка здійснюється виключно через Нову Пошту. Ознайомитися з тарифами можна на <a href="https://novaposhta.ua/" target="_blank">офіційному сайті Нової Пошти</a>.</p>
 </div>
 
-<button data-behavior="change-bg" data-color="purple">Перемкнути колір фону на фіолетовий</button>
-<button data-behavior="change-bg" data-color="white">Перемкнути колір фону на білий</button>
-<button data-behavior="change-bg" data-color="pink">Перемкнути колір фону на рожевий</button>
-
 <script>
-    document.querySelectorAll('[data-behavior="change-bg"]').forEach(button => {
-        button.addEventListener('click', function() {
-            const color = this.getAttribute('data-color');
-            document.body.style.backgroundColor = color;
-        });
-    });
+    document.addEventListener('DOMContentLoaded', function() {
+        const elements = document.querySelectorAll('#featuresList li span, .links a, .highlight, .bold');
 
-    document.getElementById('featuresList').addEventListener('click', function(event) {
-        if (event.target.tagName === 'LI' || event.target.parentElement.tagName === 'LI') {
-            const liElement = event.target.tagName === 'LI' ? event.target : event.target.parentElement;
-
-            document.querySelectorAll('#featuresList li').forEach(item => {
-                item.classList.remove('highlight-item');
+        elements.forEach(element => {
+            element.addEventListener('mouseover', function(event) {
+                if (!event.relatedTarget || !this.contains(event.relatedTarget)) {
+                    this.style.fontWeight = 'bold';
+                }
             });
 
-            liElement.classList.add('highlight-item');
-        }
+            element.addEventListener('mouseout', function(event) {
+                if (!event.relatedTarget || !this.contains(event.relatedTarget)) {
+                    this.style.fontWeight = '';
+                }
+            });
+        });
     });
 </script>
 </body>
