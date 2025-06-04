@@ -51,9 +51,15 @@
       text-align: center;
       margin-top: 20px;
     }
+
   </style>
 </head>
 <body>
+<div class="buttons-container">
+  <button id="logButton">Натисни мене</button>
+  <button id="removeHandler">Видалити обробник</button>
+</div>
+
 <h1>Наші партнери</h1>
 
 <table>
@@ -89,5 +95,21 @@
 </table>
 
 <p><a href="index.html">Повернутися на головну сторінку</a></p>
+<script>
+  const eventHandler = {
+    handleEvent: function(event) {
+      const element = event.currentTarget;
+      console.log('Елемент, на якому спрацював обробник:', element);
+      alert('Елемент, на якому спрацював обробник: ' + element.tagName);
+    }
+  };
+
+  document.getElementById('logButton').addEventListener('click', eventHandler);
+
+  document.getElementById('removeHandler').addEventListener('click', function() {
+    document.getElementById('logButton').removeEventListener('click', eventHandler);
+    alert('Обробник подій було видалено');
+  });
+</script>
 </body>
 </html>

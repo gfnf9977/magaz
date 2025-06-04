@@ -13,12 +13,36 @@
         a:hover {
             text-decoration: underline;
         }
+        img {
+            transition: transform 0.3s;
+        }
+        .button-container {
+            margin: 20px 0;
+            display: flex;
+            gap: 10px;
+        }
+        button {
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
     </style>
 </head>
 <body>
-<h1><font face="Arial" size="+2" color="#333366">Наші товари</font></h1>
+<h1 id="main-title"><font face="Arial" size="+2" color="#333366">Наші товари</font></h1>
 <p><font face="Arial" size="+1" color="#666666">Ми пропонуємо широкий вибір техніки, включаючи <i>ноутбуки, смартфони</i> та побутову техніку.</font></p>
 <p><font face="Arial" size="+1" color="#666666">У нас ви завжди знайдете <b>найновіші моделі</b> за найкращими цінами.</font></p>
+
+<div class="button-container">
+    <button onclick="changeToGreen()">Зелений колір (атрибут)</button>
+    <button id="red-btn">Червоний колір (властивість)</button>
+</div>
 
 <div class="product-category">
     <h2>Електроніка та комп'ютерна техніка</h2>
@@ -46,19 +70,19 @@
 
 <p>
     <a href="https://surli.cc/ptkkvo" target="_blank">
-        <img src="https://surli.cc/ptkkvo" alt="Смартфон" width="150" height="100">
+        <img src="https://surli.cc/ptkkvo" alt="Смартфон" width="150" height="100" onmouseover="enlargeImage(event)" onmouseout="resetImage(event)">
     </a>
 </p>
 
 <p>
     <a href="https://surli.cc/vfssjd" target="_blank">
-        <img src="https://surli.cc/vfssjd" alt="Ноутбук" width="600" height="300">
+        <img src="https://surli.cc/vfssjd" alt="Ноутбук" width="600" height="300" onmouseover="enlargeImage(event)" onmouseout="resetImage(event)">
     </a>
 </p>
 
 <p>
     <a href="https://surl.li/gifzwy" target="_blank">
-        <img src="https://surl.li/gifzwy" alt="Побутова техніка" width="300" height="200">
+        <img src="https://surl.li/gifzwy" alt="Побутова техніка" width="300" height="200" onmouseover="enlargeImage(event)" onmouseout="resetImage(event)">
     </a>
 </p>
 
@@ -67,58 +91,27 @@
 <p><font face="Arial" size="+1">Перегляньте <a href="contact.html#address" style="color: #4CAF50;">нашу адресу</a>.</font></p>
 <p id="delivery"><font face="Arial" size="+1"><b>Ви можете забрати свій товар самовивозом з нашого магазину.</b> Доставка здійснюється виключно через Нову Пошту. Ознайомитися з тарифами можна на <a href="https://www.novaposhta.ua/" target="_blank" style="color: #4CAF50;">офіційному сайті Нової Пошти</a>.</font></p>
 
-<!-- Додаємо кнопки для виконання різних дій -->
-<button onclick="useGetElementById()">Використати getElementById</button>
-<button onclick="useQuerySelectorAll()">Використати querySelectorAll</button>
-<button onclick="modifyDOMProperties()">Змінити властивості DOM</button>
-<button onclick="useDocumentWrite()">Використати document.write</button>
-<button onclick="useCreateElement()">Використати createElement</button>
-<button onclick="useInsertMethods()">Використати методи вставки</button>
-<button onclick="useRemoveMethod()">Видалити компоненти</button>
-
 <script>
-    function useGetElementById() {
-        var element = document.getElementById("delivery");
-        element.innerHTML = "<font face='Arial' size='+1' color='#FF0000'><b>Доставка оновлена: Ви можете забрати свій товар самовивозом з нашого магазину.</b> Доставка здійснюється виключно через Нову Пошту.</font>";
+    function enlargeImage(event) {
+        const img = event.currentTarget;
+        img.style.transform = 'scale(1.3)';
     }
 
-    function useQuerySelectorAll() {
-        var elements = document.querySelectorAll(".product-category h2");
-        elements.forEach(function(element, index) {
-            element.textContent = "Категорія " + (index + 1) + ": " + element.textContent;
-        });
+    function resetImage(event) {
+        const img = event.currentTarget;
+        img.style.transform = 'scale(1)';
     }
 
-    function modifyDOMProperties() {
-        var firstProduct = document.querySelector(".product-category ol li:first-child");
-        firstProduct.textContent = "Оновлений продукт: " + firstProduct.textContent;
-        firstProduct.style.color = "#FF0000";
+    function changeToGreen() {
+        document.getElementById('main-title').getElementsByTagName('font')[0].setAttribute('color', '#4CAF50');
     }
 
-    function useDocumentWrite() {
-        document.write("<p><font face='Arial' size='+1' color='#0000FF'>Дякуємо що обрали найкращий магазин)).</font></p>");
+    function changeToRed() {
+        document.getElementById('main-title').getElementsByTagName('font')[0].color = '#FF0000';
     }
 
-    function useCreateElement() {
-        var newElement = document.createElement("div");
-        var newText = document.createTextNode("Чекаємо ВАС!!!.");
-        newElement.appendChild(newText);
-        document.body.appendChild(newElement);
-    }
-
-    function useInsertMethods() {
-        var newElement = document.createElement("p");
-        newElement.textContent = "Вітаємо на цій сторінці.";
-        var firstProductCategory = document.querySelector(".product-category");
-        firstProductCategory.prepend(newElement);
-    }
-
-    function useRemoveMethod() {
-        var elementToRemove = document.querySelector(".product-category ol li:last-child");
-        if (elementToRemove) {
-            elementToRemove.remove();
-        }
-    }
+    document.getElementById('red-btn').onclick = changeToRed;
 </script>
+
 </body>
 </html>

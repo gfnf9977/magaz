@@ -5,6 +5,12 @@
     <meta name="author" content="Oleya">
     <title>Головна - Магазин техніки</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
+    <style>
+        .highlight-item {
+            background-color: yellow;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
 <div class="welcome-message">
@@ -14,13 +20,13 @@
 </div>
 
 <div class="features">
-    <ul>
-        <li><span>Чудовий сервіс та підтримка клієнтів</span></li>
-        <li><span>Кваліфіковані та дружні консультанти</span></li>
-        <li><span>Оригінальні та якісні девайси</span></li>
-        <li><span>Швидка та надійна доставка</span></li>
-        <li><span>Зручні умови оплати</span></li>
-        <li><span>Гарантія якості на всі товари</span></li>
+    <ul id="featuresList">
+        <li data-behavior="highlight"><span>Чудовий сервіс та підтримка клієнтів</span></li>
+        <li data-behavior="highlight"><span>Кваліфіковані та дружні консультанти</span></li>
+        <li data-behavior="highlight"><span>Оригінальні та якісні девайси</span></li>
+        <li data-behavior="highlight"><span>Швидка та надійна доставка</span></li>
+        <li data-behavior="highlight"><span>Зручні умови оплати</span></li>
+        <li data-behavior="highlight"><span>Гарантія якості на всі товари</span></li>
     </ul>
 </div>
 
@@ -34,30 +40,29 @@
     <p><span class="bold">Ви можете забрати свій товар самовивозом з нашого магазину.</span> Доставка здійснюється виключно через Нову Пошту. Ознайомитися з тарифами можна на <a href="https://novaposhta.ua/" target="_blank">офіційному сайті Нової Пошти</a>.</p>
 </div>
 
-<button onclick="changeBackgroundColor()">Оптимізувати колір фону</button>
+<button data-behavior="change-bg" data-color="purple">Перемкнути колір фону на фіолетовий</button>
+<button data-behavior="change-bg" data-color="white">Перемкнути колір фону на білий</button>
+<button data-behavior="change-bg" data-color="pink">Перемкнути колір фону на рожевий</button>
 
 <script>
-    alert("Ласкаво просимо до нашого магазину техніки!");
+    document.querySelectorAll('[data-behavior="change-bg"]').forEach(button => {
+        button.addEventListener('click', function() {
+            const color = this.getAttribute('data-color');
+            document.body.style.backgroundColor = color;
+        });
+    });
 
-    var userName = prompt("Будь ласка, введіть ваше ім'я:", "");
-    if (userName) {
-      alert("Привіт, " + userName + "! Ми раді вас бачити.");
-    }
+    document.getElementById('featuresList').addEventListener('click', function(event) {
+        if (event.target.tagName === 'LI' || event.target.parentElement.tagName === 'LI') {
+            const liElement = event.target.tagName === 'LI' ? event.target : event.target.parentElement;
 
-    var isConfirmed = confirm("Ви хочете перейти до списку наших товарів?");
-    if (isConfirmed) {
-      window.location.href = "products.html";
-    }
+            document.querySelectorAll('#featuresList li').forEach(item => {
+                item.classList.remove('highlight-item');
+            });
 
-    function changeBackgroundColor() {
-        var originalColor = document.body.style.backgroundColor;
-        document.body.style.backgroundColor = "#66FF99";
-
-        setTimeout(function() {
-            document.body.style.backgroundColor = originalColor;
-        }, 30000); // 30 секунд
-    }
+            liElement.classList.add('highlight-item');
+        }
+    });
 </script>
-
 </body>
 </html>

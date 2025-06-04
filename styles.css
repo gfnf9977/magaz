@@ -76,10 +76,6 @@ a:active {
     color: #444;
 }
 
-.features li:first-child {
-    font-weight: bold;
-    color: #FF5733;
-}
 
 .links {
     margin: 20px 0;
